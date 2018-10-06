@@ -1,0 +1,16 @@
+RED
+PURPLE+17
+@BLACK
+#WHITE
+=C'DEFG'
+WHITE,X
+22
+=X'5A'
+PINK+3
+=X'5A'
+PINK-3
+@25+RED
+=C'5A'
+#7
+=C'abcd'
+PURPLE+17,X
