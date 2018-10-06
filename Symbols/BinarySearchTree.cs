@@ -1,9 +1,25 @@
-﻿using System;
+﻿/********************************************************************
+*** NAME       : Tucker Troyer                                    ***
+*** CLASS      : CSc 354                                          ***
+*** ASSIGNMENT : Assignment 2 - Expressions Processing            ***
+*** DUE DATE   : 10/03/2018                                       ***
+*** INSTRUCTOR : Gamradt                                          ***
+*********************************************************************
+*** DESCRIPTION : This BinarySearchTree.cs file contains methods  ***
+***               to perform on a binary search tree.             ***
+********************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TroyerA2
+namespace SystemsProgramming
 {
+    /********************************************************************
+    *** CLASS    : Binary Search Tree Class                           ***
+    *** DESCRIPTION : This class contains all the methods used to     ***
+    ***               perform actions on a binary search tree.        ***
+    *********************************************************************/
     class BinarySearchTree
     {
         // Allocate space for a new Sorted Set (Sorted BST)

@@ -1,10 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/********************************************************************
+*** NAME       : Tucker Troyer                                    ***
+*** CLASS      : CSc 354                                          ***
+*** ASSIGNMENT : Assignment 2 - Expressions Processing            ***
+*** DUE DATE   : 10/03/2018                                       ***
+*** INSTRUCTOR : Gamradt                                          ***
+*********************************************************************
+*** DESCRIPTION : This Program.cs file is the main driver         ***
+***               file of the program.                            ***
+********************************************************************/
 
-namespace TroyerA2
+using System;
+
+namespace SystemsProgramming
 {
+    /********************************************************************
+    *** CLASS    : Program Class                                      ***
+    *** DESCRIPTION : This class is the main driver class of the      ***
+    ***               program and calls all the other classes and     ***
+    ***               functions in the program.                       ***
+    *********************************************************************/
     class Program
     {
         static void Main(string[] args)
@@ -35,11 +49,12 @@ namespace TroyerA2
 
             Console.ReadKey();
 
-            // 4. Display literal data
+            // 4. Display literal error data
             literalsLinkedList.DisplayErrors();
 
             Console.ReadKey();
 
+            // 5. Display literal data
             literalsLinkedList.Display();
 
             Console.ReadKey();

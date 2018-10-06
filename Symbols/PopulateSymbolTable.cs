@@ -1,9 +1,25 @@
-﻿using System;
+﻿/********************************************************************
+*** NAME       : Tucker Troyer                                    ***
+*** CLASS      : CSc 354                                          ***
+*** ASSIGNMENT : Assignment 2 - Expressions Processing            ***
+*** DUE DATE   : 10/03/2018                                       ***
+*** INSTRUCTOR : Gamradt                                          ***
+*********************************************************************
+*** DESCRIPTION : This PopulateSymbolTable.cs file processes the  ***
+***               data from the SYMS.dat file.                    ***
+********************************************************************/
+
+using System;
 using System.IO;
 using System.Linq;
 
-namespace TroyerA2
+namespace SystemsProgramming
 {
+    /********************************************************************
+    *** CLASS    : Populate Symbol Table Class                        ***
+    *** DESCRIPTION : This class contains all the methods used to     ***
+    ***               populate the symbol table.                      ***
+    *********************************************************************/
     class PopulateSymbolTable
     {
         // Constant for the name of data file (Program can be easily changed if name of file changes)
@@ -29,8 +45,8 @@ namespace TroyerA2
             string[] dataFileContents = GetSymbolTableFileData();
 
             Console.WriteLine("==================================================================================================");
-            Console.WriteLine("                        List of Errors While Processing Data File:                 ");
-            Console.WriteLine("==================================================================================================");
+            Console.WriteLine("                       List of Errors While Processing Data File:                 ");
+            Console.WriteLine("==================================================================================================\n");
             foreach (string dataFileLine in dataFileContents)
             {
                 // Save the parsed data file line into an array of strings
@@ -43,7 +59,7 @@ namespace TroyerA2
 
                 AddNodeToBinarySearchTree(validatedNode);
             }
-            Console.WriteLine("==================================================================================================");
+            Console.WriteLine("\n==================================================================================================");
             return binarySearchTree;
         }
 

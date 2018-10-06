@@ -1,9 +1,25 @@
-﻿using System;
+﻿/********************************************************************
+*** NAME       : Tucker Troyer                                    ***
+*** CLASS      : CSc 354                                          ***
+*** ASSIGNMENT : Assignment 2 - Expressions Processing            ***
+*** DUE DATE   : 10/03/2018                                       ***
+*** INSTRUCTOR : Gamradt                                          ***
+*********************************************************************
+*** DESCRIPTION : This ValidateSymbolTable.cs file validates the  ***
+***               symbols from the SYMS.dat file.                 ***
+********************************************************************/
+
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace TroyerA2
+namespace SystemsProgramming
 {
+    /********************************************************************
+    *** CLASS    : Validate Symbol Class                              ***
+    *** DESCRIPTION : This class contains all the methods needed to   ***
+    ***               validate a symbol from the SYMS.dat file.       ***
+    *********************************************************************/
     class ValidateSymbolTable
     {
         /********************************************************************
@@ -56,13 +72,24 @@ namespace TroyerA2
 
             if (symbolValue.Length > 10)
             {
-                Console.WriteLine("The symbol: '" + symbolValue + "' exceeds the maximum character limit.");
+                Console.WriteLine("The symbol: '" + symbolValue + "' exceeds the maximum character limit of 10 characters.");
                 isValidSymbol = false;
             }
             if (isValidSymbol == true && Char.IsLetter(symbolValue[0]) == false)
             {
-                Console.WriteLine("The symbol: '" + symbolValue + "' does not start with a letter.");
-                isValidSymbol = false;
+                if (symbolValue[0] == '$')
+                {
+                    Console.WriteLine("The symbol: '" + symbolValue + "' begins with a $ instead of a letter (a-z or A-Z).");
+                }
+                else if (symbolValue[0] == '#')
+                {
+                    Console.WriteLine("The symbol: '" + symbolValue + "' begins with a # instead of a letter (a-z or A-Z).");
+                }
+                else
+                {
+                    Console.WriteLine("The symbol: '" + symbolValue + "' does not begin with a letter (a-z or A-Z).");
+                    isValidSymbol = false;
+                }
             }
             if (isValidSymbol == true && regex.IsMatch(symbolValue) == false)
             {

@@ -11,7 +11,7 @@
 
 using System;
 
-namespace TroyerA2
+namespace SystemsProgramming
 {
     /********************************************************************
     *** CLASS    : Node Class                                         ***

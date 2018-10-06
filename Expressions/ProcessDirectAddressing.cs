@@ -1,13 +1,39 @@
-﻿using System;
+﻿/********************************************************************
+*** NAME       : Tucker Troyer                                    ***
+*** CLASS      : CSc 354                                          ***
+*** ASSIGNMENT : Assignment 2 - Expressions Processing            ***
+*** DUE DATE   : 10/03/2018                                       ***
+*** INSTRUCTOR : Gamradt                                          ***
+*********************************************************************
+*** DESCRIPTION : This ProcessDirectAddressing.cs file processes  ***
+***               the rules included for direct addressing.       ***
+********************************************************************/
+
+using System;
 using System.Linq;
 
-namespace TroyerA2
+namespace SystemsProgramming
 {
+    /********************************************************************
+    *** CLASS    : Process Direct Addressing Class                    ***
+    *** DESCRIPTION : This class consists of all the functions that   ***
+    ***               are used to process direct addressing.          ***
+    *********************************************************************/
     class ProcessDirectAddressing
     {
         Node tempNode;
         Node symbolToAdd;
 
+        /********************************************************************
+        *** FUNCTION    : Process Function                                ***
+        *** DESCRIPTION : This function processes an expression that      ***
+        ***               utilizes direct addressing.                     ***
+        *** INPUT ARGS  : ExpressionsLinkedList expressionsLinkedList,    ***
+        ***               BinarySearchTree symbolTable, string expression ***
+        *** OUTPUT ARGS : This function has zero output arguments.        ***
+        *** IN/OUT ARGS : This function has zero input/output arguments.  ***
+        *** RETURN      : This function returns nothing.                  ***
+        *********************************************************************/
         public void Process(ExpressionsLinkedList expressionsLinkedList, BinarySearchTree symbolTable, string expression)
         {
             string substring, primary, secondary;
@@ -15,7 +41,7 @@ namespace TroyerA2
             string[] tempStrippedStatement;
             bool dupestring = false;
 
-            //////// SUBTRACTION CHECKS
+            // Checks for subtraction
             if (expression.Contains("-"))
             {
                 tempStrippedStatement = expression.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
@@ -24,7 +50,7 @@ namespace TroyerA2
                     dupestring = expressionsLinkedList.SearchExpressions(expression);
                     if (!dupestring)
                     {
-                        // ABSOLUTE - ABSOLUTE
+                        // ABSOLUTE - ABSOLUTE check
                         if (!tempStrippedStatement[0].Any(x => char.IsLetter(x)) && !tempStrippedStatement[1].Any(x => char.IsLetter(x)))
                         {
                             primary = tempStrippedStatement[0];
@@ -33,7 +59,7 @@ namespace TroyerA2
                             ExpressionNode node = new ExpressionNode(expression, final, false, false, true, true, false); // Expression, Value, relocatable, direct, NBit, IBit, Xbit
                             expressionsLinkedList.Add(node);
                         }
-                        // ABSOLUTE - SYMBOL
+                        // ABSOLUTE - Symbol check
                         else if (!tempStrippedStatement[0].Any(x => char.IsLetter(x)) && tempStrippedStatement[1].Any(x => char.IsLetter(x)))
                         {
                             primary = tempStrippedStatement[0];
@@ -57,7 +83,7 @@ namespace TroyerA2
                                 Console.WriteLine("Error: The symbol " + secondary + " was not found in the symbol table for the expression: " + expression);
                             }
                         }
-                        // SYMBOL - SYMBOL
+                        // Symbol - Symbol check
                         else if (tempStrippedStatement[0].Any(x => char.IsLetter(x)) && tempStrippedStatement[1].Any(x => char.IsLetter(x)))
                         {
                             primary = tempStrippedStatement[0];
@@ -105,7 +131,7 @@ namespace TroyerA2
                                 }
                             }
                         }
-                        // SYMBOL - ABSOLUTE
+                        // Symbol - ABSOLUTE check
                         else if (tempStrippedStatement[0].Any(x => char.IsLetter(x)) && !tempStrippedStatement[1].Any(x => char.IsLetter(x)))
                         {
                             primary = tempStrippedStatement[0];
@@ -154,7 +180,7 @@ namespace TroyerA2
                     }
                 }
             }
-            ///////// ADDITION CHECKS
+            // Checks for addition
             else if (expression.Contains('+'))
             {
                 tempStrippedStatement = expression.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
@@ -166,7 +192,7 @@ namespace TroyerA2
                         bool firstContainsLetter = tempStrippedStatement[0].Any(x => char.IsLetter(x));
                         bool secondContainsLetter = tempStrippedStatement[1].Any(x => char.IsLetter(x));
 
-                        // ABSOLUTE + ABSOLUTE
+                        // ABSOLUTE + ABSOLUTE check
                         if (!firstContainsLetter && !secondContainsLetter)
                         {
                             primary = tempStrippedStatement[0];
@@ -175,7 +201,7 @@ namespace TroyerA2
                             ExpressionNode node = new ExpressionNode(expression, final, false, true, true, true, false);
                             expressionsLinkedList.Add(node);
                         }
-                        // SYMBOL + SYMBOL
+                        // Symbol + Symbol check
                         else if (firstContainsLetter && secondContainsLetter)
                         {
                             primary = tempStrippedStatement[0];
@@ -223,7 +249,7 @@ namespace TroyerA2
                                 }
                             }
                         }
-                        else // ABSOLUTE + SYMBOL || Symbol + ABSOLUTE
+                        else // Symbol + ABSOLUTE || ABSOLUTE + Symbol check
                         {
                             string symbol;
                             string value;
@@ -262,7 +288,7 @@ namespace TroyerA2
                     Console.WriteLine("Error: The symbol " + expression + " contains an invalid character");
                 }
             }
-            //////// NO EXPRESSION
+            // No addition or subtraction
             else
             {
                 if (expression.Length < 17)
